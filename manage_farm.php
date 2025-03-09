@@ -25,8 +25,11 @@ $farmers = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 if(isset($_POST['add_farm'])){
    $farm_name = $_POST['farm_name'];
+   $farm_name = filter_var($farm_name,FILTER_SANITIZE_STRING);
    $farm_location = $_POST['farm_location'];
+   $farm_location = filter_var($farm_location,FILTER_SANITIZE_STRING);
    $farm_size = $_POST['farm_size']; 
+   $farm_size = filter_var($farm_size,FILTER_SANITIZE_STRING);
    $owner_id = $_POST['owner_id']; 
 
    $select_farm = $conn->prepare("SELECT * FROM `farms` WHERE farm_name = ?");
