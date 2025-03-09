@@ -1,0 +1,1467 @@
+*{
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  border: 0;
+  text-decoration: none;
+  outline: none;
+  box-sizing: border-box;
+}
+
+:root{
+ --red:#e74c3c;
+ --orange:#f39c12;
+ --black:#34495e;
+ --white:#fff;
+ --light-color:#999;
+ --light-bg:#f5f5f5;
+ --border:.2rem solid var(--black);
+ --box-shadow:#0 .1rem .5rem rgba(0,0,0,.1);
+ --green:#27ae60;
+}
+
+::-webkit-scrollbar{
+  width: .5rem;
+  height: 1rem;
+}
+
+::-webkit-scrollbar-track{
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb{
+  background-color: green;
+}
+
+.btn,
+.delete-btn,
+.option-btn,
+.inline-btn,
+.inline-option-btn,
+.inline-delete-btn{
+  display: block;
+  border-radius: .4rem;
+  text-align: center;
+  margin: .7rem 0;
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: .7rem 1.4rem;
+  text-transform: capitalize;
+  color: var(--white);
+}
+
+.btn{
+  background-color: var(--green);
+}
+
+.option-btn{
+  background-color: var(--orange);
+}
+
+.delete-btn{
+  background-color: var(--red);
+}
+
+.btn:hover,
+.delete-btn:hover,
+.option-btn:hover,
+.inline-btn:hover,
+.inline-option-btn:hover,
+.inline-delete-btn:hover{
+   background-color: var(--black);
+}
+
+body{
+  background-color: var(--light-bg);
+}
+
+html{
+  font-size: 65%;
+}
+
+@keyframes fadeIn{
+  0%{
+    transform: translateY(1rem);
+  }
+}
+section{
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 5rem;
+}
+
+.form-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.message{
+  margin: 0 12rem;
+  padding: .8rem;
+  color: var(--black);
+  background-color: var(--light-bg);
+  font-size: 1.5rem;
+}
+.form-container form h3{
+  font-size: 2rem;
+  color: var(--black);
+  margin-bottom: .8rem;
+  text-transform: capitalize;
+}
+
+.form-container form h3 i{
+  color: var(--green);
+  margin-right: 1rem;
+}
+
+.form-container form{
+  width: 36rem;
+  background-color: var(--white);
+  border-radius: .5rem;
+  padding: 2rem;
+  box-shadow: var(--box-shadow);
+  text-align: center;
+}
+
+.form-container form .box{
+  width: 100%;
+  background-color: var(--light-bg);
+  padding: 1.3rem;
+  border-radius: .5rem;
+  margin: .7rem 0;
+  font-size: 1.4rem;
+}
+
+.form-container form span a{
+  color: var(--green);
+  margin: 1.2rem 0;
+  font-size: 1.6rem;
+  float: left;
+}
+
+.form-container form span a:hover{
+  text-decoration: underline;
+}
+
+.form-container form p{
+  color: var(--black);
+  font-size: 1.5rem;
+  margin-top: .9rem;
+}
+
+.form-container form p a{
+  color: var(--green);
+}
+
+.form-container form p a:hover{
+  color: var(--orange);
+  text-decoration: underline;
+}
+
+.header{
+  background-color: var(--white);
+  z-index: 1000;
+  position: sticky;
+  top: 0;left: 0;right: 0;
+  box-shadow: var(--box-shadow);
+}
+
+.header .flex{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 auto;
+  max-width: 1200px;
+  padding: 1.7rem;
+  position: relative;
+}
+
+.header .flex .logo{
+  font-size: 1.9rem;
+  color: var(--black);
+}
+
+.header .flex .logo span{
+  color: var(--green);
+}
+
+.header .flex .navbar a{
+  font-size: 1.6rem;
+  margin: 0 .8rem;
+  color: var(--black);
+}
+
+.header .flex .navbar a:hover{
+  color: var(--green);
+  text-decoration: underline;
+}
+
+.header .flex .icons >*{
+  font-size: 1.9rem;
+  color: var(--light-color);
+  padding-left: 1rem;
+  cursor: pointer;
+}
+
+#menu-btn{
+  display: none;
+}
+
+.header .flex .icons >*:hover{
+  color: var(--green);
+}
+
+.header .flex .profile{
+  right: .6rem;
+  background-color: var(--white);
+  top: 120%;
+  position: absolute;
+  text-align: center;
+  border: var(--border);
+  border-radius: .5rem;
+  width: 22rem;
+  padding: 1rem;
+  display: none;
+  animation: fadeIn .2s linear;
+}
+
+.header .flex .profile.active{
+  display: inline-block;
+}
+
+.header .flex .profile  h3{
+  font-size: 1.4rem;
+  text-transform: capitalize;
+  font-family: cursive;
+}
+
+.flex-btn{
+  display: flex;
+  gap: .5rem;
+  align-items: center;
+}
+.title{
+  text-align: center;
+  color: var(--black);
+  text-transform: capitalize;
+  font-size: 2rem;
+  text-align: left;
+  margin-bottom: 1.3rem;
+
+}
+
+.empty{
+  border: var(--border);
+  border-radius: .5rem;
+  color: var(--red);
+  text-align: center;
+  padding: 1rem;
+  background-color: var(--white);
+  font-size: 1.5rem;
+}
+
+/* update profile */
+
+
+.update-profile form{
+  max-width: 70rem;
+  margin: 0 auto;
+  background-color: var(--white);
+  box-shadow: var(--box-shadow);
+  border:var(--border);
+  border-radius: .5rem;
+  padding:2rem;
+  text-align: center;
+}
+
+.update-profile form .flex{
+  display: flex;
+  gap:1.5rem;
+  justify-content: space-between;
+}
+
+.update-profile form img{
+  height: 20rem;
+  width: 20rem;
+  margin-bottom: 1rem;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.update-profile form .inputBox{
+  text-align: left;
+  width: 49%;
+}
+
+.update-profile form .inputBox span{
+  display: block;
+  padding-top: 1rem;
+  font-size: 1.8rem;
+  color:var(--light-color);
+}
+
+.update-profile form .inputBox .box{
+  width: 100%;
+  padding:1.2rem 1.4rem;
+  font-size: 1.8rem;
+  color:var(--black);
+  border:var(--border);
+  border-radius: .5rem;
+  margin:1rem 0;
+  background-color: var(--light-bg);
+}
+
+
+.overview {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 20px;
+  margin-bottom: 10px;
+}
+
+.overview .stat-card {
+    border-radius: .5rem;
+    background-color: var(--white);
+    text-align: center;
+    padding: 1rem;
+    box-shadow: var(--box-shadow);
+}
+
+.overview .stat-card h3{
+  font-size: 3.2rem;
+  color: var(--black);
+}
+
+.overview .stat-card p {
+  font-size: 1.6rem;
+  border: var(--border);
+  border-radius: .5rem;
+  padding: .9rem;
+  margin: .8rem 0;
+  background-color: var(--light-bg);
+  color: var(--black);
+}
+
+
+.manage-farmer .box-container{
+  display: grid;
+  grid-template-columns: repeat(auto-fit,25rem);
+  align-items: flex-start;
+  gap: 1.8rem;
+  justify-content: center;
+}
+
+.manage-farmer .box-container .box{
+  border-radius: .5rem;
+  background-color: var(--white);
+  text-align: center;
+  padding: 1rem;
+  box-shadow: var(--box-shadow);
+}
+
+.manage-farmer .box-container .box h3{
+  font-size: 1.9rem;
+  color: var(--black);
+}
+
+.manage-farmer .box-container .box p{
+  font-size: 1.7rem;
+  border: var(--border);
+  border-radius: .5rem;
+  padding: .8rem;
+  margin: .8rem 0;
+  background-color: var(--light-bg);
+  color: var(--black);
+  
+}
+
+/* .add-farmer form{
+  margin: 0 auto;
+  border-radius: .5rem;
+  max-width: 65rem;
+  box-shadow: var(--box-shadow);
+  text-align: center;
+  padding: 1rem;
+  background-color: var(--white);
+}
+
+.add-farmer form .flex{
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.add-farmer form .inputBox{
+  width: 49%;
+}
+
+.add-farmer form  span{
+  color: var(--light-color);
+  display: block;
+  font-size: 1.3rem;
+  text-align: left;
+}
+
+.add-farmer form .box{
+  width: 100%; 
+  border: var(--border);
+  border-radius: .5rem;
+  padding: .7rem;
+  font-size: 1.3rem;
+  color: var(--black);
+  margin: .7rem 0;
+} */
+/* manage farm */
+
+.manage-farm .box-container{
+  display: grid;
+  grid-template-columns: repeat(auto-fit,25rem);
+  align-items: flex-start;
+  gap: 1.8rem;
+  justify-content: center;
+}
+
+.manage-farm .box-container .box{
+  border-radius: .5rem;
+  background-color: var(--white);
+  text-align: center;
+  padding: 1rem;
+  box-shadow: var(--box-shadow);
+}
+
+.manage-farm .box-container .box h3{
+  font-size: 1.9rem;
+  color: var(--black);
+}
+
+.manage-farm .box-container .box p{
+  font-size: 1.7rem;
+  border: var(--border);
+  border-radius: .5rem;
+  padding: .8rem;
+  margin: .8rem 0;
+  background-color: var(--light-bg);
+  color: var(--black);
+  
+}
+
+
+/* manage workers */
+
+.manage-worker .box-container{
+  display: grid;
+  grid-template-columns: repeat(auto-fit,25rem);
+  align-items: flex-start;
+  gap: 1.8rem;
+  justify-content: center;
+}
+
+.manage-worker .box-container .box{
+  border-radius: .5rem;
+  background-color: var(--white);
+  text-align: center;
+  padding: 1rem;
+  box-shadow: var(--box-shadow);
+}
+
+.manage-worker .box-container .box h3{
+  font-size: 1.9rem;
+  color: var(--black);
+}
+
+.manage-worker .box-container .box p{
+  font-size: 1.7rem;
+  border: var(--border);
+  border-radius: .5rem;
+  padding: .8rem;
+  margin: .8rem 0;
+  background-color: var(--light-bg);
+  color: var(--black);
+  
+}
+
+
+
+/* manage tasks */
+
+.manage-task .box-container{
+  display: grid;
+  grid-template-columns: repeat(auto-fit,25rem);
+  align-items: flex-start;
+  gap: 1.8rem;
+  justify-content: center;
+}
+
+.manage-task .box-container .box{
+  border-radius: .5rem;
+  background-color: var(--white);
+  text-align: center;
+  padding: 1rem;
+  box-shadow: var(--box-shadow);
+}
+
+.manage-task .box-container .box h3{
+  font-size: 1.9rem;
+  color: var(--black);
+}
+
+.manage-task .box-container .box p{
+  font-size: 1.7rem;
+  border: var(--border);
+  border-radius: .5rem;
+  padding: .8rem;
+  margin: .8rem 0;
+  background-color: var(--light-bg);
+  color: var(--black);
+  
+} 
+
+  
+  main {
+    margin-top: 20px;
+  }
+  
+  /* Dashboard Overview */
+  .overview {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    margin-bottom: 30px;
+  }
+  
+  .overview .stat-card {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .overview .stat-card h3 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+  }
+  
+  .overview .stat-card p {
+    font-size: 1.5em;
+    color: #4CAF50;
+  } 
+  
+  /* Task Assignment Table */
+  .task-assignment {
+    margin-bottom: 30px;
+  }
+  
+  .task-assignment table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+  }
+  
+  .task-assignment th, 
+  .task-assignment td {
+    padding: 12px;
+    text-align: left;
+    font-size: 1.5rem;
+    border-bottom: var(--border);
+  }
+  
+  .task-assignment th {
+    background-color: #4CAF50;
+    color: white;
+    font-size: 1.4rem;
+  }
+  
+  /* .task-assignment td button {
+    background-color: #f1c40f;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .task-assignment td button:hover {
+    background-color: #e67e22;
+  } */
+  
+  /* User Management */
+  .user-management {
+    margin-bottom: 30px;
+  }
+  
+  .user-actions {
+    margin-bottom: 20px;
+  }
+  
+  /* .user-actions button {
+    padding: 10px 15px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-right: 10px;
+  }
+  
+  .user-actions button:hover {
+    background-color: #2980b9;
+  } */
+  
+  .user-management table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+  }
+  
+  .user-management th, 
+  .user-management td {
+    padding: 12px;
+    text-align: left;
+    font-size: 1.5rem;
+    border-bottom: var(--border);
+  }
+  
+  .user-management th {
+    background-color: #4CAF50;
+    color: white;
+    font-size: 1.4rem;
+  }
+  
+  /* .user-management td button {
+    background-color: #f1c40f;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+  } */
+  
+  /* .user-management td button:hover {
+    background-color: #e67e22;
+  } */
+  
+  /* Analytics Section */
+  .analytics {
+    margin-bottom: 40px;
+  }
+  
+  .analytics .charts {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 20px;
+  }
+  
+  .analytics .chart {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    height: 200px;
+    text-align: center;
+  }
+  
+    .analytics .chart h3 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+  }
+  
+    .analytics .chart p {
+    font-size: 1em;
+    color: #555;
+  }
+  
+  /* Footer */
+  footer{
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    padding: 2rem;
+    /* position: fixed; */
+    bottom: 0;
+    width: 100%;
+    font-size: 1.8rem;
+    margin-top: 20px;
+  }
+
+  footer span{
+    text-transform: capitalize;
+    color: var(--black);
+    font-size: 2rem;
+  }
+
+
+/* adding farmers */
+
+  main {
+    margin-top: 20px;
+  }
+  
+  /* Farmer Form */
+  .add-farmer{
+    margin: 0 auto;
+    max-width: 90rem;
+    background-color: var(--white);
+    box-shadow: var(--box-shadow);
+    border-radius: .8rem;
+  }
+
+  .add-farmer h2{
+    color: var(--green);
+    padding-bottom: 2rem;
+    font-size: 2.1rem;
+  }
+
+  .add-farmer .form-group {
+    margin-bottom: 1.7rem;
+  }
+  
+  .add-farmer .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 1.6rem;
+    text-transform: capitalize;
+    text-align: left;
+  }
+  
+  .add-farmer .form-group input,
+  .add-farmer .form-group select {
+    width: 100%;
+    margin-left: 0;
+    background-color: var(--light-bg);
+    padding: .7rem;
+    font-size: 1.7rem;
+    border: var(--border);
+    border-radius: .5rem;
+  }
+  
+  .form-group input:focus,
+  .form-group select:focus {
+    border-color: #4CAF50;
+  }
+
+
+
+  
+
+   /* Farmer Form */
+   .add-farm{
+    margin: 0 auto;
+    max-width: 90rem;
+    background-color: var(--white);
+    box-shadow: var(--box-shadow);
+    border-radius: .8rem;
+  }
+
+  .add-farm h2{
+    color: var(--green);
+    padding-bottom: 2rem;
+    font-size: 2.1rem;
+  }
+
+  .add-farm .form-group {
+    margin-bottom: 1.7rem;
+  }
+  
+  .add-farm .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 1.6rem;
+    text-transform: capitalize;
+    text-align: left;
+  }
+  
+  .add-farm .form-group input,
+  .add-farm .form-group select {
+    width: 100%;
+    margin-left: 0;
+    background-color: var(--light-bg);
+    padding: .7rem;
+    font-size: 1.7rem;
+    border: var(--border);
+    border-radius: .5rem;
+  }
+  
+  .form-group input:focus,
+  .form-group select:focus {
+    border-color: #4CAF50;
+  }
+
+  
+  /* table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  table th, table td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: var(--border);
+  }
+  
+  table th {
+    background-color: red;
+    color: white;
+  }
+  
+  table tr:hover {
+    background-color: #f1f1f1;
+  } */
+  
+ 
+
+  
+
+
+
+  /* add worker */
+  main {
+    margin-top: 20px;
+  }
+  
+  /* Add Worker Page */
+  .add-worker{
+    margin: 0 auto;
+    max-width: 90rem;
+    background-color: var(--white);
+    box-shadow: var(--box-shadow);
+    border-radius: .8rem;
+  }
+
+  .add-worker h2{
+    color: var(--green);
+    padding-bottom: 2rem;
+    font-size: 2.1rem;
+  }
+
+  .add-worker .form-group {
+    margin-bottom: 1.7rem;
+  }
+  
+  .add-worker .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 1.6rem;
+    text-transform: capitalize;
+    text-align: left;
+  }
+  
+  .add-worker .form-group input,
+  .add-worker .form-group select {
+    width: 100%;
+    margin-left: 0;
+    background-color: var(--light-bg);
+    padding: .7rem;
+    font-size: 1.7rem;
+    border: var(--border);
+    border-radius: .5rem;
+  }
+  
+  .form-group input:focus,
+  .form-group select:focus {
+    border-color: #4CAF50;
+  }
+ 
+
+
+
+  /* analytics */
+  
+
+  /* Main Content */
+  main {
+    margin-top: 20px;
+  }
+  
+  /* Analytics Section */
+  .analytics-section {
+    max-width: 1000px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .analytics-section h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  /* Overview Stats */
+  .overview-stats {
+    display: flex;
+    gap: 20px;
+    justify-content: space-between;
+    margin-bottom: 30px;
+  }
+  
+  .overview-stats .stat-card {
+    background-color: #f4f4f4;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    width: 23%;
+  }
+  
+  .stat-card h3 {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+  }
+  
+  .stat-card p {
+    font-size: 1.5em;
+    font-weight: bold;
+  }
+  
+  /* Charts Container */
+  .charts-container {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 30px;
+  }
+  
+  .chart {
+    width: 48%;
+  }
+  
+  /* Data Filters */
+  .filters {
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  
+  .filters select {
+    padding: 8px;
+    margin: 0 10px;
+    border-radius: 5px;
+    font-size: 1em;
+  }
+  
+  /* Alerts Section */
+  .alerts {
+    background-color: #f8d7da;
+    padding: 20px;
+    border-radius: 8px;
+  }
+  
+  .alerts h3 {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+  }
+  
+  .alerts ul {
+    list-style: none;
+  }
+  
+  .alerts li {
+    font-size: 1em;
+    margin-bottom: 5px;
+  }
+  
+  /* manage farmer */
+  /* .container {
+    width: 90%;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  h1, h2 {
+    text-align: center;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  table, th, td {
+    border: 1px solid #ddd;
+  }
+  
+  th, td {
+    padding: 10px;
+    text-align: left;
+  }
+  
+  input[type="text"], input[type="number"] {
+    width: 100%;
+    padding: 8px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }  
+  
+  form {
+    width: 100%;
+  }
+  
+  #searchSection {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  #farmersTable {
+    margin-top: 20px;
+  }
+  
+  .container {
+    width: 90%;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  h1, h2 {
+    text-align: center;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  table, th, td {
+    border: 1px solid #ddd;
+  }
+  
+  th, td {
+    padding: 10px;
+    text-align: left;
+  }
+  
+  input[type="text"], select {
+    width: 100%;
+    padding: 8px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  form {
+    width: 100%;
+  }
+  
+  #searchSection {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  #workersTable {
+    margin-top: 20px;
+  }
+   */
+
+
+  /* manage task  */
+  
+  .add-task{
+    margin: 0 auto;
+    max-width: 90rem;
+    background-color: var(--white);
+    box-shadow: var(--box-shadow);
+    border-radius: .8rem;
+  }
+
+  .add-task h2{
+    color: var(--green);
+    padding-bottom: 2rem;
+    font-size: 2.1rem;
+  }
+
+  .add-task .form-group {
+    margin-bottom: 1.7rem;
+  }
+  
+  .add-task .form-group textarea{
+    height: 10rem;
+    resize: none;
+    border: var(--border);
+    width: 100%;
+    border-radius: .5rem;
+  }
+
+  .add-task .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 1.6rem;
+    text-transform: capitalize;
+    text-align: left;
+  }
+  
+  .add-task .form-group input,
+  .add-task .form-group select {
+    width: 100%;
+    margin-left: 0;
+    background-color: var(--light-bg);
+    padding: .6rem;
+    font-size: 1.7rem;
+    border: var(--border);
+    border-radius: .5rem;
+  }
+  
+  .form-group input:focus,
+  .form-group select:focus {
+    border-color: #4CAF50;
+  }
+
+  /* .container {
+    width: 90%;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  h1, h2 {
+    text-align: center;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  table, th, td {
+    border: 1px solid #ddd;
+  }
+  
+  th, td {
+    padding: 10px;
+    text-align: left;
+  }
+  
+  input[type="text"], input[type="date"], select, textarea {
+    width: 100%;
+    padding: 8px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  form {
+    width: 100%;
+  }
+  
+  #searchSection {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  #taskTable {
+    margin-top: 20px;
+  }
+  
+  textarea {
+    height: 100px;
+  }
+
+   */
+ 
+  /* list of tasks  */
+  
+  /* .container {
+    width: 90%;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  h1, h2 {
+    text-align: center;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  table, th, td {
+    border: 1px solid #ddd;
+  }
+  
+  th, td {
+    padding: 10px;
+    text-align: left;
+  }
+  
+  input[type="text"] {
+    width: 200px;
+    padding: 8px;
+    margin: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  form {
+    width: 100%;
+  }
+  
+  #searchSection {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: flex-start;
+  }
+  
+  #taskTable {
+    margin-top: 20px;
+  }
+  
+  textarea {
+    height: 100px;
+  } */
+   
+
+  /* edit farmer */
+
+
+  .edit-farmer{
+    margin: 4rem auto;
+    max-width: 75rem;
+    background-color: var(--white);
+    box-shadow: var(--box-shadow);
+    border-radius: .8rem;
+  }
+
+  .edit-farmer h2{
+    color: var(--green);
+    padding-bottom: 2rem;
+    font-size: 2.1rem;
+  }
+
+  .edit-farmer .form-group {
+    margin-bottom: 1.7rem;
+  }
+  
+
+  .edit-farmer .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 1.6rem;
+    text-transform: capitalize;
+    text-align: left;
+  }
+  
+  .edit-farmer .form-group input,
+  .edit-farmer .form-group select {
+    width: 100%;
+    margin-left: 0;
+    background-color: var(--light-bg);
+    padding: .7rem;
+    font-size: 1.7rem;
+    border: var(--border);
+    border-radius: .5rem;
+  }
+  
+  .form-group input:focus,
+  .form-group select:focus {
+    border-color: #4CAF50;
+  }
+
+
+
+  /* edit farm */
+
+
+  .edit-farm{
+    margin: 4rem auto;
+    max-width: 75rem;
+    background-color: var(--white);
+    box-shadow: var(--box-shadow);
+    border-radius: .8rem;
+  }
+
+  .edit-farm h2{
+    color: var(--green);
+    padding-bottom: 2rem;
+    font-size: 2.1rem;
+  }
+
+  .edit-farm .form-group {
+    margin-bottom: 1.7rem;
+  }
+  
+
+  .edit-farm .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 1.6rem;
+    text-transform: capitalize;
+    text-align: left;
+  }
+  
+  .edit-farm .form-group input,
+  .edit-farm .form-group select {
+    width: 100%;
+    margin-left: 0;
+    background-color: var(--light-bg);
+    padding: .7rem;
+    font-size: 1.7rem;
+    border: var(--border);
+    border-radius: .5rem;
+  }
+  
+  .form-group input:focus,
+  .form-group select:focus {
+    border-color: #4CAF50;
+  }
+
+
+/* edit worker */
+
+
+.edit-worker{
+  margin: 4rem auto;
+  max-width: 75rem;
+  background-color: var(--white);
+  box-shadow: var(--box-shadow);
+  border-radius: .8rem;
+}
+
+.edit-worker h2{
+  color: var(--green);
+  padding-bottom: 2rem;
+  font-size: 2.1rem;
+}
+
+.edit-worker .form-group {
+  margin-bottom: 1.7rem;
+}
+
+
+.edit-worker .form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 1.6rem;
+  text-transform: capitalize;
+  text-align: left;
+}
+
+.edit-worker .form-group input,
+.edit-worker .form-group select {
+  width: 100%;
+  margin-left: 0;
+  background-color: var(--light-bg);
+  padding: .7rem;
+  font-size: 1.7rem;
+  border: var(--border);
+  border-radius: .5rem;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: #4CAF50;
+}
+
+
+
+/* edit task */
+
+
+.edit-task{
+  margin: 4rem auto;
+  max-width: 75rem;
+  background-color: var(--white);
+  box-shadow: var(--box-shadow);
+  border-radius: .8rem;
+}
+
+.edit-task h2{
+  color: var(--green);
+  padding-bottom: 2rem;
+  font-size: 2.1rem;
+}
+
+.edit-task .form-group {
+  margin-bottom: 1.7rem;
+}
+
+
+.edit-task .form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 1.6rem;
+  text-transform: capitalize;
+  text-align: left;
+}
+
+.edit-task .form-group textarea{
+  resize: none;
+  height: 10rem;
+}
+
+.edit-task .form-group input,
+.edit-task .form-group select,
+.edit-task .form-group textarea{
+  width: 100%;
+  margin-left: 0;
+  background-color: var(--light-bg);
+  padding: .7rem;
+  font-size: 1.7rem;
+  border: var(--border);
+  border-radius: .5rem;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus{
+  border-color: #4CAF50;
+}
+
+
+
+
+
+/* media queries start here */
+
+@media(max-width:991px){
+  html{
+      font-size: 71%;
+  }
+}
+
+@media(max-width:768px){
+ #menu-btn{
+  display: inline-block;
+ }
+
+ .header .flex .navbar{
+  border-top: var(--border);
+  border-bottom: var(--border);
+  background-color: var(--white);
+  position: absolute;
+  right: 0;
+  padding: 1rem;
+  left: 0;top: 90%;
+  transition: .2s linear;
+  clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+ }
+
+ .header .flex .navbar.active{
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+ }
+
+ .header .flex .navbar a{
+  margin: 1rem 0;
+  display: block;
+ }
+}
+
+@media(max-width:450px){
+  html{
+      font-size: 64%;
+  }
+}
