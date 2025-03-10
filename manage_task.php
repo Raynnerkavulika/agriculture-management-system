@@ -20,6 +20,7 @@ if(isset($_GET['delete'])){
 
 if(isset($_POST['submit_task'])) {
   $task_name = $_POST['task_name'];
+  $task_name = filter_var($task_name,FILTER_SANITIZE_STRING);
   $description = $_POST['description'];
   $assigned_worker = $_POST['assigned_worker'];
   $deadline = $_POST['deadline'];
