@@ -4,13 +4,12 @@
 -- livestock table
 CREATE TABLE livestock (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    farm_id INT NOT NULL,
     animal_type VARCHAR(50) NOT NULL,
     breed VARCHAR(50),
     quantity INT NOT NULL,
     birth_date DATE,
     status ENUM('Healthy', 'Sick', 'Sold') DEFAULT 'Healthy',
-    FOREIGN KEY (farm_id) REFERENCES farms(id) ON DELETE CASCADE
+    -- FOREIGN KEY (farm_id) REFERENCES farms(id) ON DELETE CASCADE
 );
 
 
@@ -18,13 +17,12 @@ CREATE TABLE livestock (
 
 CREATE TABLE crops (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    farm_id INT NOT NULL,
     crop_name VARCHAR(100) NOT NULL,
     planted_date DATE,
     expected_yield DECIMAL(10,2),
     actual_yield DECIMAL(10,2),
     status ENUM('Planted', 'Growing', 'Harvested') DEFAULT 'Planted',
-    FOREIGN KEY (farm_id) REFERENCES farms(id) ON DELETE CASCADE
+    -- FOREIGN KEY (farm_id) REFERENCES farms(id) ON DELETE CASCADE
 );
 
 

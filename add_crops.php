@@ -8,6 +8,31 @@ if(!isset($admin_id)){
 };
 
 
+if(isset($_POST['add_crop'])){
+  $crop_name = $_POST['crop_name'];
+  $crop_name = filter_var($crop_name,FILTER_SANITIZE_STRING);
+  $planted_date = $_POST['planted_date'];
+  $planted_date = filter_var($planted_date,FILTER_SANITIZE_STRING);
+  $expected_yield = $_POST['expected_yield']; 
+  $expected_yield = filter_var($expected_yield,FILTER_SANITIZE_STRING);
+  $actual_yield = $_POST['actual_yield']; 
+  $actual_yield = filter_var($actual_yield,FILTER_SANITIZE_STRING);
+  $status = $_POST['status'];
+  $status = filter_var($status,FILTER_SANITIZE_STRING);
+
+  $select_crop = $conn->prepare("SELECT * FROM `crops` WHERE crop_name = ?");
+  $select_crop->execute([$crop_name]);
+
+  if($select_crop->rowCount() >0){
+      $message[] = "crop has already been added to the system";       
+  }else{
+     $insert_crop = $conn->prepare("INSERT INTO `crops`(crop_name,planted_date,expected_yield,actual_yield) VALUES(?,?,?,?)");
+     $insert_crop->execute([$crop_name,$planted_date,$expected_yield,$actual_yield]);
+     $message[] = "crop has been added successfully to the system";
+  }
+
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -27,12 +52,25 @@ if(!isset($admin_id)){
 
 <?php include "admin_header.php";?>
 
+<?php  
+   if(isset($message)){
+    foreach($message as $message){
+        echo'
+        <div class="message">
+            <span>'.$message.'</span>
+        </div>
+        ';
+    }
+   }
+
+?>
+
 
 <section class="add-crop">
       <h2 class="title">Add Crop</h2>
     <form action="" method="POST">
-        <div class="form-group">
-        <label for="farm_id">Farm:</label>
+        <!-- <div class="form-group">
+        <label for="farm">Farm:</label>
         <select name="farm_id" required>
             <option value="">Select Farm</option>
            //<?php
@@ -42,7 +80,7 @@ if(!isset($admin_id)){
            // }
             //?>
         </select>
-        </div>
+        </div> -->
         <div class="form-group">
         <label for="crop_name">Crop Name:</label>
         <input type="text" name="crop_name" required>

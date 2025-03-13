@@ -76,7 +76,7 @@ if(isset($_POST['add_worker'])){
     }
    }
 
-?>  -
+?>  
 
 
 <?php  include "admin_header.php"; ?>
@@ -162,7 +162,7 @@ if(isset($_POST['add_worker'])){
 
 
 
-  <!-- Farmers List Section -->
+  <!-- workers List Section -->
   <section class="user-management">
 
   <h3 class="title" style="text-align: center;">workers list</h3>

@@ -8,6 +8,25 @@ if(!isset($admin_id)){
 };
 
 
+if(isset($_POST["add_revenue"])){
+
+  $sale_date = $_POST["sale_date"];
+  $amount = $_POST["amount"];
+  $description = $_POST['description'];
+
+  $select_revenue = $conn->prepare("SELECT * FROM `revenue` WHERE sale_date = ?");
+  $select_revenue->execute([$sale_date]);
+
+  if($select_revenue->rowCount() >0){
+      $message[] = "This revenue details have been added to the system already";       
+  }else{
+     $insert_revenue = $conn->prepare("INSERT INTO `revenue`(sale_date,amount,description) VALUES(?,?,?)");
+     $insert_revenue->execute([$sale_date,$amount,$description]);
+     $message[] = "revenue details have been added successfully to the system";
+  }
+
+
+}
 ?>
 
 <!DOCTYPE html>
@@ -26,6 +45,19 @@ if(!isset($admin_id)){
 
 <?php include "admin_header.php";?>
 
+
+<?php  
+   if(isset($message)){
+    foreach($message as $message){
+        echo'
+        <div class="message">
+            <span>'.$message.'</span>
+        </div>
+        ';
+    }
+   }
+
+?> 
 
 <section class="add-revenue">
       <h2>Add Revenue</h2>
