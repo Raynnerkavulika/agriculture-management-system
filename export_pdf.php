@@ -1,52 +1,63 @@
 <?php
-require 'db.php';
-require 'vendor/autoload.php'; // Load dompdf
+require 'vendor/autoload.php'; // Load Dompdf
+require 'config.php'; // Database connection
 
 use Dompdf\Dompdf;
 use Dompdf\Options;
 
+// Initialize Dompdf
 $options = new Options();
-$options->set('defaultFont', 'Courier');
+$options->set('defaultFont', 'Arial');
 $dompdf = new Dompdf($options);
 
-// Fetch Data
+// Fetch data from the database
+function fetchData($pdo, $query)
+{
+    $stmt = $pdo->query($query);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+// Get data
+$farmers = fetchData($conn, "SELECT id, farmer_name, farmer_number, farm_location FROM farmers");
+$workers = fetchData($conn, "SELECT id, full_name, job_title FROM workers");
+$revenue = fetchData($conn, "SELECT id, sale_date, amount FROM revenue");
+$livestock = fetchData($conn, "SELECT id, animal_type, quantity FROM livestock");
+$crops = fetchData($conn, "SELECT id, crop_name, planted_date, expected_yield FROM crops");
+
+// Generate HTML for PDF
 $html = '<h2>Farm Reports</h2>';
 
-// Crop Report
-$html .= '<h3>📌 Crop Report</h3>';
-$html .= '<table border="1" cellpadding="5">
-            <tr><th>Crop Name</th><th>Planted Date</th><th>Expected Yield</th><th>Actual Yield</th><th>Status</th></tr>';
-$crops = $pdo->query("SELECT * FROM crops");
-while ($crop = $crops->fetch(PDO::FETCH_ASSOC)) {
-    $html .= "<tr>
-                <td>{$crop['crop_name']}</td>
-                <td>{$crop['planted_date']}</td>
-                <td>{$crop['expected_yield']}</td>
-                <td>{$crop['actual_yield']}</td>
-                <td>{$crop['status']}</td>
-            </tr>";
-}
-$html .= '</table>';
+// Function to create table HTML
+function generateTable($title, $data, $headers)
+{
+    $html = "<h3>$title</h3><table border='1' width='100%' cellspacing='0' cellpadding='5'><tr>";
+    foreach ($headers as $header) {
+        $html .= "<th>$header</th>";
+    }
+    $html .= "</tr>";
 
-// Livestock Report
-$html .= '<h3>📌 Livestock Report</h3>';
-$html .= '<table border="1" cellpadding="5">
-            <tr><th>Animal Type</th><th>Breed</th><th>Quantity</th><th>Birth Date</th><th>Status</th></tr>';
-$livestock = $pdo->query("SELECT * FROM livestock");
-while ($animal = $livestock->fetch(PDO::FETCH_ASSOC)) {
-    $html .= "<tr>
-                <td>{$animal['animal_type']}</td>
-                <td>{$animal['breed']}</td>
-                <td>{$animal['quantity']}</td>
-                <td>{$animal['birth_date']}</td>
-                <td>{$animal['status']}</td>
-            </tr>";
-}
-$html .= '</table>';
+    foreach ($data as $row) {
+        $html .= "<tr>";
+        foreach ($row as $value) {
+            $html .= "<td>$value</td>";
+        }
+        $html .= "</tr>";
+    }
 
-// Load HTML and Output PDF
+    $html .= "</table><br>";
+    return $html;
+}
+
+// Add each section to the report
+$html .= generateTable('Farmers', $farmers, ['ID', 'Name', 'Contact', 'Farm Location']);
+$html .= generateTable('Workers', $workers, ['ID', 'Name', 'Job Title']);
+$html .= generateTable('Revenue', $revenue, ['ID', 'Sale Date', 'Amount']);
+$html .= generateTable('Livestock', $livestock, ['ID', 'Animal Type', 'Quantity']);
+$html .= generateTable('Crops', $crops, ['ID', 'Crop Name', 'Planted Date', 'Expected Yield']);
+
+// Load HTML into Dompdf and render PDF
 $dompdf->loadHtml($html);
 $dompdf->setPaper('A4', 'portrait');
 $dompdf->render();
-$dompdf->stream("Farm_Reports.pdf", array("Attachment" => 1));
+$dompdf->stream("farm_reports_" . date("Y-m-d") . ".pdf", ["Attachment" => true]); // Force download
 ?>
