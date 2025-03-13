@@ -66,8 +66,14 @@ if(isset($_GET['delete'])){
         <p>Total Workers</p>
       </div>
       <div class="stat-card">
-        <h3>KES 5,000,000</h3>
-        <p>Total Revenue</p>
+              <?php
+                    $select_revenue = $conn->prepare("SELECT * FROM `revenue`");
+                    $select_revenue->execute();
+                    $total_revenue = $select_revenue->rowCount();
+              ?>
+
+              <h3>Sh <?= $total_revenue;?>/=</h3>
+              <p>total revenue</p>
       </div>
     </section>
 

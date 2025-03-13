@@ -5,11 +5,11 @@
 
      <div class="navbar">
         <a href="dashboard.php">Dashboard</a>
+        <a href="manage_farm.php">farm Management</a>
         <a href="manage_farmer.php">Farmers Management</a>
         <a href="manage_worker.php">Workers Management</a>
-        <a href="manage_farm.php">farm Management</a>
         <a href="manage_task.php">Task Management</a>
-        <a href="reports.php">Reports</a>
+        <a href="farm_reports.php">Reports</a>
      </div>
 
      <div class="icons">

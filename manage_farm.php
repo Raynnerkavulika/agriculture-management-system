@@ -116,10 +116,47 @@ if(isset($_POST['add_farm'])){
                <h3><?= $number_of_inactive_farm;?></h3>
               <p>inactive farms</p>
       </div>
+
+      <div class="box">
+              <?php
+                    $select_crops = $conn->prepare("SELECT * FROM `crops`");
+                    $select_crops->execute();
+                    $number_of_crops = $select_crops->rowCount();
+              ?>
+
+               <h3><?= $number_of_crops;?></h3>
+              <p>total crops</p>
+      </div>
+
+      <div class="box">
+              <?php
+                    $select_livestock = $conn->prepare("SELECT * FROM `livestock`");
+                    $select_livestock->execute();
+                    $number_of_livestock = $select_livestock->rowCount();
+              ?>
+
+               <h3><?= $number_of_livestock;?></h3>
+              <p>total livestock</p>
+      </div>
+
+      <div class="box">
+              <?php
+                    $select_revenue = $conn->prepare("SELECT * FROM `revenue`");
+                    $select_revenue->execute();
+                    $total_revenue = $select_revenue->rowCount();
+              ?>
+
+               <h3>Sh <?= $total_revenue;?>/=</h3>
+              <p>total revenue</p>
+      </div>
     </div>
   </section>
 
-
+    <div class="flex-btn" style="margin-left:28rem;margin-bottom:3rem;">
+      <a href="add_crops.php" class="btn">add crops</a>
+      <a href="add_livestock.php" class="option-btn">add livestock</a>
+      <a href="add_revenue.php" class="btn">add revenue</a>
+    </div>
   <section class="add-farm">
       <h2>Add New Farm</h2>
 
@@ -156,7 +193,7 @@ if(isset($_POST['add_farm'])){
   <!-- Farmers List Section -->
   <section class="user-management">
 
-  <h3 class="title" style="text-align: center;">Farmers list</h3>
+  <h3 class="title" style="text-align: center;">Farm list</h3>
 
 
     <!-- Farmers Table -->
@@ -207,8 +244,6 @@ if(isset($_POST['add_farm'])){
       </table>
 
       </section>
-
-
 
       <?php include "footer.php"; ?>
 
