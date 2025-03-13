@@ -24,6 +24,10 @@ if(!isset($admin_id)){
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
             <!-- custom css link -->
   <link rel="stylesheet" href="style.css">
+   <style>
+  .export-buttons { margin-top: 20px; }
+        .export-buttons button { padding: 10px; text-decoration:underline;margin-right: 10px; cursor: pointer; }
+    </style>
 </head>
 <body>
     
@@ -321,9 +325,15 @@ if(!isset($admin_id)){
     </table>
 </section>
 
-    
-    <br>
-    <a href="farm_analytics.php">📊 View Analytics</a>
+<div class="export-buttons">
+        <form action="export_pdf.php" method="post">
+            <button type="submit"> Export to PDF</button>
+        </form>
+
+        <form action="export_excel.php" method="post">
+            <button type="submit"> Export to Excel</button>
+        </form>
+    </div>
 
 
 
