@@ -177,7 +177,6 @@ if(isset($_POST['add_farmer'])){
             <th>Phone</th>
             <th>Location</th>
             <th>Farm Type</th>
-            <th>Date Added</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -197,8 +196,6 @@ if(isset($_POST['add_farmer'])){
                   <td><?= $fetch_farmer['farmer_number'];?></td>
                   <td><?= $fetch_farmer['farm_location'];?></td>
                   <td><?= $fetch_farmer['farm_type'];?></td>
-                  <td>01-01-2025</td>
-
                   <td>
                     <div class="flex-btn">
                       <a href="edit_farmer.php?edit=<?= $fetch_farmer['id'];?>" class="option-btn">edit</a>

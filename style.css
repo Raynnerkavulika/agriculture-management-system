@@ -75,6 +75,11 @@ body{
   background-color: var(--light-bg);
 }
 
+::selection{
+  background-color: var(--green);
+  color: var(--white);
+}
+
 html{
   font-size: 65%;
 }
@@ -377,42 +382,6 @@ section{
   
 }
 
-/* .add-farmer form{
-  margin: 0 auto;
-  border-radius: .5rem;
-  max-width: 65rem;
-  box-shadow: var(--box-shadow);
-  text-align: center;
-  padding: 1rem;
-  background-color: var(--white);
-}
-
-.add-farmer form .flex{
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-}
-
-.add-farmer form .inputBox{
-  width: 49%;
-}
-
-.add-farmer form  span{
-  color: var(--light-color);
-  display: block;
-  font-size: 1.3rem;
-  text-align: left;
-}
-
-.add-farmer form .box{
-  width: 100%; 
-  border: var(--border);
-  border-radius: .5rem;
-  padding: .7rem;
-  font-size: 1.3rem;
-  color: var(--black);
-  margin: .7rem 0;
-} */
 /* manage farm */
 
 .manage-farm .box-container{
@@ -574,18 +543,6 @@ section{
     font-size: 1.4rem;
   }
   
-  /* .task-assignment td button {
-    background-color: #f1c40f;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  .task-assignment td button:hover {
-    background-color: #e67e22;
-  } */
-  
   /* User Management */
   .user-management {
     margin-bottom: 30px;
@@ -594,20 +551,6 @@ section{
   .user-actions {
     margin-bottom: 20px;
   }
-  
-  /* .user-actions button {
-    padding: 10px 15px;
-    background-color: #3498db;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-right: 10px;
-  }
-  
-  .user-actions button:hover {
-    background-color: #2980b9;
-  } */
   
   .user-management table {
     width: 100%;
@@ -629,20 +572,8 @@ section{
     font-size: 1.4rem;
   }
   
-  /* .user-management td button {
-    background-color: #f1c40f;
-    border: none;
-    padding: 8px 12px;
-    border-radius: 5px;
-    cursor: pointer;
-  } */
-  
-  /* .user-management td button:hover {
-    background-color: #e67e22;
-  } */
-  
   /* Analytics Section */
-  .analytics {
+   .analytics {
     margin-bottom: 40px;
   }
   
@@ -654,8 +585,8 @@ section{
   }
   
   .analytics .chart {
-    background-color: #fff;
-    padding: 20px;
+    background-color: #fff; 
+    padding: 15px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     height: 200px;
@@ -671,14 +602,13 @@ section{
     font-size: 1em;
     color: #555;
   }
-  
+   
   /* Footer */
   footer{
     background-color: #4CAF50;
     color: white;
     text-align: center;
     padding: 2rem;
-    /* position: fixed; */
     bottom: 0;
     width: 100%;
     font-size: 1.8rem;
@@ -792,7 +722,7 @@ section{
   
    /* livestock Form */
    .add-livestock{
-    margin: 0 auto;
+    margin: 3rem auto;
     max-width: 90rem;
     background-color: var(--white);
     box-shadow: var(--box-shadow);
@@ -831,7 +761,7 @@ section{
   
    /* Farm Form */
    .add-revenue{
-    margin: 0 auto;
+    margin: 3rem auto;
     max-width: 90rem;
     background-color: var(--white);
     box-shadow: var(--box-shadow);
@@ -849,6 +779,14 @@ section{
     text-transform: capitalize;
     text-align: left;
   }
+
+  .add-revenue .form-group textarea{
+    height: 10rem;
+    resize: none;
+    border: var(--border);
+    width: 100%;
+    border-radius: .5rem;
+  }
   
   .add-revenue .form-group input,
   .add-revenue .form-group select {
@@ -865,36 +803,6 @@ section{
   .form-group select:focus {
     border-color: #4CAF50;
   }
-
-  
-  
-
-  /* table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-  }
-  
-  table th, table td {
-    padding: 10px;
-    text-align: left;
-    border-bottom: var(--border);
-  }
-  
-  table th {
-    background-color: red;
-    color: white;
-  }
-  
-  table tr:hover {
-    background-color: #f1f1f1;
-  } */
-  
- 
-
-  
-
-
 
   /* add worker */
   main {
@@ -943,33 +851,8 @@ section{
   .form-group select:focus {
     border-color: #4CAF50;
   }
- 
 
 
-
-  /* analytics */
-  
-
-  /* Main Content */
-  main {
-    margin-top: 20px;
-  }
-  
-  /* Analytics Section */
-  .analytics-section {
-    max-width: 1000px;
-    margin: 0 auto;
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  .analytics-section h2 {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
   /* Overview Stats */
   .overview-stats {
     display: flex;
@@ -992,7 +875,7 @@ section{
   }
   
   .stat-card p {
-    font-size: 1.5em;
+    font-size: 1.5rem;
     font-weight: bold;
   }
   
@@ -1005,141 +888,9 @@ section{
   
   .chart {
     width: 48%;
-  }
+  } 
   
-  /* Data Filters */
-  .filters {
-    margin-bottom: 20px;
-    text-align: center;
-  }
   
-  .filters select {
-    padding: 8px;
-    margin: 0 10px;
-    border-radius: 5px;
-    font-size: 1em;
-  }
-  
-  /* Alerts Section */
-  .alerts {
-    background-color: #f8d7da;
-    padding: 20px;
-    border-radius: 8px;
-  }
-  
-  .alerts h3 {
-    font-size: 1.2em;
-    margin-bottom: 10px;
-  }
-  
-  .alerts ul {
-    list-style: none;
-  }
-  
-  .alerts li {
-    font-size: 1em;
-    margin-bottom: 5px;
-  }
-  
-  /* manage farmer */
-  /* .container {
-    width: 90%;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: white;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  h1, h2 {
-    text-align: center;
-  }
-  
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-  }
-  
-  table, th, td {
-    border: 1px solid #ddd;
-  }
-  
-  th, td {
-    padding: 10px;
-    text-align: left;
-  }
-  
-  input[type="text"], input[type="number"] {
-    width: 100%;
-    padding: 8px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }  
-  
-  form {
-    width: 100%;
-  }
-  
-  #searchSection {
-    margin-bottom: 20px;
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  #farmersTable {
-    margin-top: 20px;
-  }
-  
-  .container {
-    width: 90%;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: white;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  h1, h2 {
-    text-align: center;
-  }
-  
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-  }
-  
-  table, th, td {
-    border: 1px solid #ddd;
-  }
-  
-  th, td {
-    padding: 10px;
-    text-align: left;
-  }
-  
-  input[type="text"], select {
-    width: 100%;
-    padding: 8px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  form {
-    width: 100%;
-  }
-  
-  #searchSection {
-    margin-bottom: 20px;
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  #workersTable {
-    margin-top: 20px;
-  }
-   */
 
 
   /* manage task  */
@@ -1194,11 +945,9 @@ section{
     border-color: #4CAF50;
   }
 
-
-
-  
+/* add crop   */
   .add-crop{
-    margin: 0 auto;
+    margin: 3rem auto;
     max-width: 90rem;
     background-color: var(--white);
     box-shadow: var(--box-shadow);
@@ -1208,14 +957,7 @@ section{
   .add-crop .form-group {
     margin-bottom: 1.7rem;
   }
-  
-  /* .add-crop .form-group textarea{
-    height: 10rem;
-    resize: none;
-    border: var(--border);
-    width: 100%;
-    border-radius: .5rem;
-  } */
+
 
   .add-crop .form-group label {
     display: block;
@@ -1242,119 +984,7 @@ section{
   }
 
 
-  /* .container {
-    width: 90%;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: white;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  h1, h2 {
-    text-align: center;
-  }
-  
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-  }
-  
-  table, th, td {
-    border: 1px solid #ddd;
-  }
-  
-  th, td {
-    padding: 10px;
-    text-align: left;
-  }
-  
-  input[type="text"], input[type="date"], select, textarea {
-    width: 100%;
-    padding: 8px;
-    margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  form {
-    width: 100%;
-  }
-  
-  #searchSection {
-    margin-bottom: 20px;
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  #taskTable {
-    margin-top: 20px;
-  }
-  
-  textarea {
-    height: 100px;
-  }
-
-   */
- 
-  /* list of tasks  */
-  
-  /* .container {
-    width: 90%;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: white;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  h1, h2 {
-    text-align: center;
-  }
-  
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-  }
-  
-  table, th, td {
-    border: 1px solid #ddd;
-  }
-  
-  th, td {
-    padding: 10px;
-    text-align: left;
-  }
-  
-  input[type="text"] {
-    width: 200px;
-    padding: 8px;
-    margin: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-  
-  form {
-    width: 100%;
-  }
-  
-  #searchSection {
-    margin-bottom: 20px;
-    display: flex;
-    justify-content: flex-start;
-  }
-  
-  #taskTable {
-    margin-top: 20px;
-  }
-  
-  textarea {
-    height: 100px;
-  } */
-   
-
   /* edit farmer */
-
 
   .edit-farmer{
     margin: 4rem auto;
@@ -1496,6 +1126,151 @@ section{
 
 
 
+
+/* edit revenue */
+
+
+.edit-revenue{
+  margin: 4rem auto;
+  max-width: 75rem;
+  background-color: var(--white);
+  box-shadow: var(--box-shadow);
+  border-radius: .8rem;
+}
+
+.edit-revenue h2{
+  color: var(--green);
+  padding-bottom: 2rem;
+  font-size: 2.1rem;
+}
+
+.edit-revenue .form-group {
+  margin-bottom: 1.7rem;
+}
+
+
+.edit-revenue .form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 1.6rem;
+  text-transform: capitalize;
+  text-align: left;
+}
+
+.edit-revenue .form-group input,
+.edit-revenue .form-group select {
+  width: 100%;
+  margin-left: 0;
+  background-color: var(--light-bg);
+  padding: .7rem;
+  font-size: 1.7rem;
+  border: var(--border);
+  border-radius: .5rem;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: #4CAF50;
+}
+
+
+
+
+/* edit crop */
+
+
+.edit-crop{
+  margin: 4rem auto;
+  max-width: 75rem;
+  background-color: var(--white);
+  box-shadow: var(--box-shadow);
+  border-radius: .8rem;
+}
+
+.edit-crop h2{
+  color: var(--green);
+  padding-bottom: 2rem;
+  font-size: 2.1rem;
+}
+
+.edit-crop .form-group {
+  margin-bottom: 1.7rem;
+}
+
+
+.edit-crop .form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 1.6rem;
+  text-transform: capitalize;
+  text-align: left;
+}
+
+.edit-crop .form-group input,
+.edit-crop .form-group select {
+  width: 100%;
+  margin-left: 0;
+  background-color: var(--light-bg);
+  padding: .7rem;
+  font-size: 1.7rem;
+  border: var(--border);
+  border-radius: .5rem;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: #4CAF50;
+}
+
+
+
+
+
+/* edit livestock */
+
+
+.edit-livestock{
+  margin: 4rem auto;
+  max-width: 75rem;
+  background-color: var(--white);
+  box-shadow: var(--box-shadow);
+  border-radius: .8rem;
+}
+
+.edit-livestock h2{
+  color: var(--green);
+  padding-bottom: 2rem;
+  font-size: 2.1rem;
+}
+
+.edit-livestock .form-group {
+  margin-bottom: 1.7rem;
+}
+
+
+.edit-livestock .form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 1.6rem;
+  text-transform: capitalize;
+  text-align: left;
+}
+
+.edit-livestock .form-group input,
+.edit-livestock .form-group select {
+  width: 100%;
+  margin-left: 0;
+  background-color: var(--light-bg);
+  padding: .7rem;
+  font-size: 1.7rem;
+  border: var(--border);
+  border-radius: .5rem;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+  border-color: #4CAF50;
+}
 /* edit task */
 
 
@@ -1551,8 +1326,8 @@ section{
 
 
 /* Title Styling */
-h2 {
-  color: #333;
+ h2 { 
+   color: #333;
   margin-bottom: 20px;
   font-size: 24px;
 }
@@ -1572,21 +1347,11 @@ h2 {
   border-radius: 10px;
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
-}
+} 
 canvas {
   max-width: 100%;
   height: 300px !important;
-}
-
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .chart-container {
-      flex-direction: column;
-      align-items: center;
-  }
-}
-
+} 
 
 
 

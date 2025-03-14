@@ -8,6 +8,14 @@ if(!isset($admin_id)){
 };
 
 
+if(isset($_GET['delete'])){
+        
+  $delete_id = $_GET['delete'];
+  $delete_crop = $conn->prepare("DELETE FROM `crops` WHERE id=?");
+  $delete_crop->execute([$delete_id]);
+  $message[] ="crop has been deleted successfully";
+}; 
+
 if(isset($_POST['add_crop'])){
   $crop_name = $_POST['crop_name'];
   $crop_name = filter_var($crop_name,FILTER_SANITIZE_STRING);
@@ -87,11 +95,11 @@ if(isset($_POST['add_crop'])){
         </div>
         <div class="form-group">
         <label for="planted_date">Planted Date:</label>
-        <input type="date" name="planted_date">
+        <input type="date" name="planted_date" required>
          </div>
          <div class="form-group">
         <label for="expected_yield">Expected Yield (kg):</label>
-        <input type="number" name="expected_yield">
+        <input type="number" name="expected_yield" required>
         </div>
         <div class="form-group">
         <label for="actual_yield">Actual Yield (kg):</label>
@@ -99,7 +107,7 @@ if(isset($_POST['add_crop'])){
          </div>
          <div class="form-group">
         <label for="status">Status:</label>
-        <select name="status">
+        <select name="status" required>
             <option value="Planted">Planted</option>
             <option value="Growing">Growing</option>
             <option value="Harvested">Harvested</option>
@@ -108,6 +116,59 @@ if(isset($_POST['add_crop'])){
         <input type="submit" value="add crop" name="add_crop" class="btn">
     </form>
       </section>
+
+
+      <section class="user-management">
+
+<h3 class="title" style="text-align: center;">crop list</h3>
+
+<table id="cropsTable">
+      <thead>
+        <tr>
+          <th>crop name</th>
+          <th>planted date</th>
+          <th>Expected yield(kg)</th>
+          <th>actual yield(kg)</th>
+          <th>status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Example crop row -->
+        <?php
+       $select_crop = $conn->prepare("SELECT * FROM `crops`");
+       $select_crop->execute();
+       if($select_crop->rowCount()>0){
+          while($fetch_crop = $select_crop->fetch(PDO::FETCH_ASSOC)){
+
+            
+      ?>
+       
+
+        <tr>
+          <td><?= $fetch_crop['crop_name'];?></td>
+          <td><?= $fetch_crop['planted_date'];?></td>
+          <td><?= $fetch_crop['expected_yield'];?></td>
+          <td><?= $fetch_crop['actual_yield'];?></td>
+          <td><?= $fetch_crop['status'];?></td>
+          <td>
+              <div class="flex-btn">
+                      <a href="edit_crops.php?edit=<?= $fetch_crop['id'];?>" class="option-btn">edit</a>
+                      <a href="add_crops.php?delete=<?= $fetch_crop['id'];?>" class="delete-btn" onclick="return confirm('delete this crop?');">delete </a>
+              </div>
+          </td>
+          <td>
+        </tr>
+
+          <?php
+              }
+            }else{
+              echo'<p class="empty">no crop have been added yet!</p>';
+            }
+          ?>
+      </tbody>
+    </table>
+</section>
 
 </body>
 </html>

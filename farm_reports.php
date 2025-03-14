@@ -37,9 +37,19 @@ if(!isset($admin_id)){
 <?php include "admin_header.php"; ?>
 
 
-    <h2 class="title">Farm Reports</h2>
+    <h2 class="title" style="margin: 3rem 8rem;color:green;font-size:3rem;text-transform:uppercase;">Farm Reports</h2>
 
+<div class="flex-btn" style="margin-left: 12rem;">
+       <form action="export_pdf.php" method="post">
+            <button type="submit" class="btn">Export to PDF</button>
+        </form>
 
+        <form action="export_excel.php" method="post">
+            <button type="submit" class="option-btn"> Export to Excel</button>
+        </form>
+
+        <a href="farm_analytics.php" class="btn">view farm analytics</a>
+</div>
     <!-- farmers report -->
   <section class="user-management">
 
@@ -58,7 +68,6 @@ if(!isset($admin_id)){
           <th>Location</th>
           <th>Farm Type</th>
           <th>Date Added</th>
-          <!-- <th>Actions</th> -->
         </tr>
       </thead>
       <tbody>
@@ -78,13 +87,6 @@ if(!isset($admin_id)){
                 <td><?= $fetch_farmer['farm_location'];?></td>
                 <td><?= $fetch_farmer['farm_type'];?></td>
                 <td>01-01-2025</td>
-
-                <!-- <td>
-                  <div class="flex-btn">
-                    <a href="edit_farmer.php?edit=<?= $fetch_farmer['id'];?>" class="option-btn">edit</a>
-                    <a href="manage_farmer.php?delete=<?= $fetch_farmer['id'];?>" class="delete-btn" onclick="return confirm('delete this user');">delete </a>
-                  </div>
-                </td> -->
               </tr>
 
           <?php
@@ -116,7 +118,6 @@ if(!isset($admin_id)){
           <th>Status</th>
           <th>Phone</th>
           <th>Salary</th>
-          <!-- <th>Actions</th> -->
         </tr>
       </thead>
       <tbody>
@@ -138,12 +139,6 @@ if(!isset($admin_id)){
           <td><?= $fetch_worker['status'];?></td>
           <td><?= $fetch_worker['phone'];?></td>
           <td><?= $fetch_worker['salary'];?></td>
-          <!-- <td>
-          <div class="flex-btn">
-          <a href="edit_worker.php?edit=<?= $fetch_worker['id'];?>" class="option-btn">edit</a>
-          <a href="manage_worker.php?delete=<?= $fetch_worker['id'];?>" class="delete-btn" onclick="return confirm('delete this user');">delete </a>
-          </div>
-          </td> -->
         </tr>
 
           <?php
@@ -177,7 +172,6 @@ if(!isset($admin_id)){
           <th>Expected yield(kg)</th>
           <th>actual yield(kg)</th>
           <th>status</th>
-          <!-- <th>Actions</th> -->
         </tr>
       </thead>
       <tbody>
@@ -199,11 +193,6 @@ if(!isset($admin_id)){
           <td><?= $fetch_crop['actual_yield'];?></td>
           <td><?= $fetch_crop['status'];?></td>
           <td>
-          <!-- <div class="flex-btn">
-          <a href="edit_worker.php?edit=<?= $fetch_worker['id'];?>" class="option-btn">edit</a>
-          <a href="manage_worker.php?delete=<?= $fetch_worker['id'];?>" class="delete-btn" onclick="return confirm('delete this user');">delete </a>
-          </div>
-          </td> -->
         </tr>
 
           <?php
@@ -235,7 +224,6 @@ if(!isset($admin_id)){
           <th>quantity</th>
           <th>birth date</th>
           <th>status</th>
-          <!-- <th>Actions</th> -->
         </tr>
       </thead>
       <tbody>
@@ -257,11 +245,6 @@ if(!isset($admin_id)){
           <td><?= $fetch_livestock['birth_date'];?></td>
           <td><?= $fetch_livestock['status'];?></td>
           <td>
-          <!-- <div class="flex-btn">
-          <a href="edit_worker.php?edit=<?= $fetch_worker['id'];?>" class="option-btn">edit</a>
-          <a href="manage_worker.php?delete=<?= $fetch_worker['id'];?>" class="delete-btn" onclick="return confirm('delete this user');">delete </a>
-          </div>
-          </td> -->
         </tr>
 
           <?php
@@ -275,7 +258,7 @@ if(!isset($admin_id)){
 </section>
 
   
-<!-- livestock report starts here -->
+<!-- revenue report starts here -->
 
 
     
@@ -289,7 +272,6 @@ if(!isset($admin_id)){
           <th>sale date</th>
           <th>amount</th>
           <th>description</th>
-          <!-- <th>Actions</th> -->
         </tr>
       </thead>
       <tbody>
@@ -308,11 +290,6 @@ if(!isset($admin_id)){
           <td><?= $fetch_revenue['sale_date'];?></td>
           <td><?= $fetch_revenue['amount'];?></td>
           <td><?= $fetch_revenue['description'];?></td>
-          <!-- <div class="flex-btn">
-          <a href="edit_worker.php?edit=<?= $fetch_worker['id'];?>" class="option-btn">edit</a>
-          <a href="manage_worker.php?delete=<?= $fetch_worker['id'];?>" class="delete-btn" onclick="return confirm('delete this user');">delete </a>
-          </div>
-          </td> -->
         </tr>
 
           <?php
@@ -324,17 +301,6 @@ if(!isset($admin_id)){
       </tbody>
     </table>
 </section>
-
-<div class="export-buttons">
-        <form action="export_pdf.php" method="post">
-            <button type="submit"> Export to PDF</button>
-        </form>
-
-        <form action="export_excel.php" method="post">
-            <button type="submit"> Export to Excel</button>
-        </form>
-    </div>
-
 
 
 

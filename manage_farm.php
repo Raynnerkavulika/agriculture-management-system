@@ -140,10 +140,13 @@ if(isset($_POST['add_farm'])){
       </div>
 
       <div class="box">
-              <?php
+      <?php
+                    $total_revenue = 0;
                     $select_revenue = $conn->prepare("SELECT * FROM `revenue`");
                     $select_revenue->execute();
-                    $total_revenue = $select_revenue->rowCount();
+                    while($fetch_revenue = $select_revenue->fetch(PDO::FETCH_ASSOC)){
+                      $total_revenue += $fetch_revenue['amount'];
+                    }
               ?>
 
                <h3>Sh <?= $total_revenue;?>/=</h3>

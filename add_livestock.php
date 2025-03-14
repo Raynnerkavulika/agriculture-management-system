@@ -7,7 +7,13 @@ if(!isset($admin_id)){
   header("location:login.php");
 };
 
-
+if(isset($_GET['delete'])){
+        
+  $delete_id = $_GET['delete'];
+  $delete_livestock = $conn->prepare("DELETE FROM `livestock` WHERE id=?");
+  $delete_livestock->execute([$delete_id]);
+  $message[] ="livestock has been deleted successfully";
+}; 
 
 if(isset($_POST['add_livestock'])){
   $animal_type = $_POST['animal_type'];
@@ -94,11 +100,11 @@ if(isset($_POST['add_livestock'])){
         </div>
         <div class="form-group">
         <label for="birth_date">Birth Date:</label>
-        <input type="date" name="birth_date">
+        <input type="date" name="birth_date" required>
         </div>
         <div class="form-group">
         <label for="status">Status:</label>
-        <select name="status">
+        <select name="status" required>
             <option value="Healthy">Healthy</option>
             <option value="Sick">Sick</option>
             <option value="Sold">Sold</option>
@@ -107,5 +113,61 @@ if(isset($_POST['add_livestock'])){
         <input type="submit" class="btn" name="add_livestock" value="add livestock">
     </form>
       </section>
+
+      <!-- livestock list starts here -->
+
+
+    
+  <section class="user-management">
+
+<h3 class="title" style="text-align: center;">livestock list</h3>
+
+<table id="livestockTable">
+      <thead>
+        <tr>
+          <th>animal type</th>
+          <th>breed</th>
+          <th>quantity</th>
+          <th>birth date</th>
+          <th>status</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Example crop row -->
+        <?php
+       $select_livestock = $conn->prepare("SELECT * FROM `livestock`");
+       $select_livestock->execute();
+       if($select_livestock->rowCount()>0){
+          while($fetch_livestock = $select_livestock->fetch(PDO::FETCH_ASSOC)){
+
+            
+      ?>
+       
+
+        <tr>
+          <td><?= $fetch_livestock['animal_type'];?></td>
+          <td><?= $fetch_livestock['breed'];?></td>
+          <td><?= $fetch_livestock['quantity'];?></td>
+          <td><?= $fetch_livestock['birth_date'];?></td>
+          <td><?= $fetch_livestock['status'];?></td>
+          <td>
+                  <div class="flex-btn">
+                      <a href="edit_livestock.php?edit=<?= $fetch_livestock['id'];?>" class="option-btn">edit</a>
+                      <a href="add_livestock.php?delete=<?= $fetch_livestock['id'];?>" class="delete-btn" onclick="return confirm('delete this livestock');">delete </a>
+                  </div>
+          </td>
+          <td>
+        </tr>
+
+          <?php
+              }
+            }else{
+              echo'<p class="empty">no livestock has been added yet!</p>';
+            }
+          ?>
+      </tbody>
+    </table>
+</section>
 </body>
 </html>

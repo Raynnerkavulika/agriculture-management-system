@@ -8,9 +8,9 @@ if(isset($_POST['submit'])){
     $name = filter_var($name,FILTER_SANITIZE_STRING);
     $email = $_POST['email'];
     $email = filter_var($email,FILTER_SANITIZE_STRING);
-    $password = $_POST['password'];
+    $password = password_hash($_POST['password'],PASSWORD_DEFAULT);
     $password = filter_var($password,FILTER_SANITIZE_STRING);
-    $cpassword = $_POST['cpassword'];
+    $cpassword = password_hash($_POST['cpassword'],PASSWORD_DEFAULT);
     $cpassword = filter_var($cpassword,FILTER_SANITIZE_STRING);
 
     $select = $conn->prepare("SELECT * FROM users WHERE email=?");

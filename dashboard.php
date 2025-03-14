@@ -9,6 +9,25 @@ if(!isset($admin_id)){
 };
 
 
+// to be used in the farm analytics section
+
+// Fetch Revenue Data
+$revenueData = $conn->query("SELECT sale_date, amount FROM revenue")->fetchAll(PDO::FETCH_ASSOC);
+$revenueLabels = json_encode(array_column($revenueData, 'sale_date'));
+$revenueValues = json_encode(array_column($revenueData, 'amount'));
+
+// Fetch Crop Data
+$cropData = $conn->query("SELECT crop_name, expected_yield FROM crops")->fetchAll(PDO::FETCH_ASSOC);
+$cropLabels = json_encode(array_column($cropData, 'crop_name'));
+$cropValues = json_encode(array_column($cropData, 'expected_yield'));
+
+// Fetch Livestock Data
+$livestockData = $conn->query("SELECT animal_type, quantity FROM livestock")->fetchAll(PDO::FETCH_ASSOC);
+$livestockLabels = json_encode(array_column($livestockData, 'animal_type'));
+$livestockValues = json_encode(array_column($livestockData, 'quantity'));
+
+
+
 if(isset($_GET['delete'])){
         
   $delete_id = $_GET['delete'];
@@ -25,10 +44,17 @@ if(isset($_GET['delete'])){
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Admin Dashboard - Agricultural Management</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
    <!-- font awesome cdn link -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
             <!-- custom css link -->
   <link rel="stylesheet" href="style.css">
+
+  <style>
+        .chart-container { width: 70%; margin: auto; }
+        .stats { display: flex; justify-content: space-around; margin:10px 0; }
+        .stats div { margin-top:2.7rem;padding: 20px; border-radius: .5rem; background: lightgray; font-size: 20px; }
+    </style>
 </head>
 <body>
   
@@ -67,9 +93,12 @@ if(isset($_GET['delete'])){
       </div>
       <div class="stat-card">
               <?php
+                    $total_revenue = 0;
                     $select_revenue = $conn->prepare("SELECT * FROM `revenue`");
                     $select_revenue->execute();
-                    $total_revenue = $select_revenue->rowCount();
+                    while($fetch_revenue = $select_revenue->fetch(PDO::FETCH_ASSOC)){
+                      $total_revenue += $fetch_revenue['amount'];
+                    }
               ?>
 
               <h3>Sh <?= $total_revenue;?>/=</h3>
@@ -80,23 +109,23 @@ if(isset($_GET['delete'])){
     <section class="task-assignment">
       <h2 class="title">Recent Task Assignments</h2>
       <table>
-        <tr>
+        <tr> 
           <th>Task</th>
-          <th>Assigned To</th>
+          <th>Description</th>
           <th>Deadline</th>
           <th>Status</th>
         </tr>
         <tr>
-          <td>Water Crops</td>
-          <td>Farmer 1</td>
-          <td>2025-02-19</td>
-          <td>Completed</td>
-        </tr>
-        <tr>
-          <td>Feed Livestock</td>
-          <td>Worker 3</td>
-          <td>2025-02-18</td>
-          <td>Pending</td>
+               <?php
+                    $select_task = $conn->prepare("SELECT * FROM `tasks`");
+                    $select_task->execute();
+                    $fetch_task = $select_task->fetch(PDO::FETCH_ASSOC);
+        
+                ?>
+          <td><?= $fetch_task['task_name'];?></td>
+          <td><?= $fetch_task['description'];?></td>
+          <td><?= $fetch_task['deadline'];?></td>
+          <td><?= $fetch_task['status'];?></td>
         </tr>
       </table>
     </section>
@@ -159,9 +188,66 @@ if(isset($_GET['delete'])){
       <h2 class="title">Farm Analytics</h2>
       <div class="charts">
         <!-- Placeholder for charts (you can integrate tools like Chart.js here) -->
-        <div class="chart">Farm Revenue Trend</div>
+        <div class="chart-container">
+        <h3 style="font-size: 1.7rem;">Revenue Trend</h3>
+        <canvas id="revenueChart"></canvas>
+    </div>
+
+    <div class="chart-container">
+        <h3 style="font-size: 1.7rem;">Crop Production</h3>
+        <canvas id="cropChart"></canvas>
+    </div>
+
+    <div class="chart-container">
+        <h3 style="font-size: 1.7rem;">Livestock Distribution</h3>
+        <canvas id="livestockChart"></canvas>
+    </div>
+
+    <script>
+        // Revenue Chart
+        new Chart(document.getElementById('revenueChart'), {
+            type: 'line',
+            data: {
+                labels: <?= $revenueLabels ?>,
+                datasets: [{
+                    label: 'Revenue (KES)',
+                    data: <?= $revenueValues ?>,
+                    borderColor: 'blue',
+                    backgroundColor: 'rgba(0, 0, 255, 0.1)',
+                    fill: true
+                }]
+            }
+        });
+
+        // Crop Production Chart
+        new Chart(document.getElementById('cropChart'), {
+            type: 'bar',
+            data: {
+                labels: <?= $cropLabels ?>,
+                datasets: [{
+                    label: 'Expected Yield (kg)',
+                    data: <?= $cropValues ?>,
+                    backgroundColor: 'green'
+                }]
+            }
+        });
+
+        // Livestock Distribution Chart
+        new Chart(document.getElementById('livestockChart'), {
+            type: 'pie',
+            data: {
+                labels: <?= $livestockLabels ?>,
+                datasets: [{
+                    label: 'Quantity',
+                    data: <?= $livestockValues ?>,
+                    backgroundColor: ['red', 'blue', 'yellow', 'purple', 'orange']
+                }]
+            }
+        });
+    </script>
+        <!-- <div class="chart">Farm Revenue Trend</div>
         <div class="chart">Crop Growth Analysis</div>
-        <div class="chart">Livestock Health Monitoring</div>
+        <div class="chart">Livestock Health Monitoring</div> -->
       </div>
     </section>
   </main>

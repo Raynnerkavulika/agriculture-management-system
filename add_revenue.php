@@ -7,6 +7,14 @@ if(!isset($admin_id)){
   header("location:login.php");
 };
 
+if(isset($_GET['delete'])){
+        
+  $delete_id = $_GET['delete'];
+  $delete_revenue = $conn->prepare("DELETE FROM `revenue` WHERE id=?");
+  $delete_revenue->execute([$delete_id]);
+  $message[] ="revenue details have been deleted successfully";
+}; 
+
 
 if(isset($_POST["add_revenue"])){
 
@@ -77,6 +85,54 @@ if(isset($_POST["add_revenue"])){
         <input type="submit" class="btn" name="add_revenue" value="add revenue">
     </form>
       </section>
+
+<section class="user-management">
+
+<h3 class="title" style="text-align: center;">revenue list</h3>
+
+<table id="revenueTable">
+      <thead>
+        <tr>
+          <th>sale date</th>
+          <th>amount</th>
+          <th>description</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Example revenue row -->
+        <?php
+       $select_revenue = $conn->prepare("SELECT * FROM `revenue`");
+       $select_revenue->execute();
+       if($select_revenue->rowCount()>0){
+          while($fetch_revenue = $select_revenue->fetch(PDO::FETCH_ASSOC)){
+
+            
+      ?>
+       
+
+        <tr>
+          <td><?= $fetch_revenue['sale_date'];?></td>
+          <td><?= $fetch_revenue['amount'];?></td>
+          <td><?= $fetch_revenue['description'];?></td>
+          <td>
+                  <div class="flex-btn">
+                      <a href="edit_revenue.php?edit=<?= $fetch_revenue['id'];?>" class="option-btn">edit</a>
+                      <a href="add_revenue.php?delete=<?= $fetch_revenue['id'];?>" class="delete-btn" onclick="return confirm('delete this revenue details');">delete </a>
+                  </div>
+          </td>
+        </tr>
+
+          <?php
+              }
+            }else{
+              echo'<p class="empty">no revenue details has been added yet!</p>';
+            }
+          ?>
+      </tbody>
+    </table>
+</section>
+
 
 </body>
 </html>

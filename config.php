@@ -1,5 +1,5 @@
 <?php
-$dbname = "mysql:host=localhost;dbname=agriculture";
+$dbname = "mysql:host=localhost;dbname=agriculture2";
 $username = "root";
 $password = "";
 
